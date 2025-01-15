@@ -15,7 +15,7 @@ export const isAuthor = async (req, res, next) => {
     if (!task) {
       return next(new ExpressError(404, "Task not found!"));
     }
-    if (req.user._id.toString() !== userId) {
+    if (task.author.toString() !== userId) {
       return next(new ExpressError(403, "Access denied. Invalid token."));
     }
     next();
