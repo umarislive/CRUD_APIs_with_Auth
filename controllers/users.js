@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 import ExpressError from "../utils/ExpressError.js";
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   let user = await User.findOne({ email: req.body.email });
   if (user) return next(new ExpressError(400, "User already resgistered."));
 

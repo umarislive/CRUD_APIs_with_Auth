@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import User from "../models/user.js";
 import ExpressError from "../utils/ExpressError.js";
 
-export const auth = async (req, res) => {
+export const auth = async (req, res, next) => {
   let user = await User.findOne({ email: req.body.email });
   if (!user) return next(new ExpressError(400, "Invalid email or password"));
 
